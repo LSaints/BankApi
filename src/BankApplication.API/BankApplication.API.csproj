@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankApplication.Domain\BankApplication.Domain.csproj" />
-    <ProjectReference Include="..\BankApplication.Infrastructure\BankApplication.Infrastructure.csproj" />
-    <ProjectReference Include="..\BankApplication.Manager\BankApplication.Manager.csproj" />
+    <ProjectReference Include="../BankApplication.Domain/BankApplication.Domain.csproj" />
+    <ProjectReference Include="../BankApplication.Infrastructure/BankApplication.Infrastructure.csproj" />
+    <ProjectReference Include="../BankApplication.Manager/BankApplication.Manager.csproj" />
   </ItemGroup>
 
 </Project>

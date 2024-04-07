@@ -1,38 +1,44 @@
-﻿using BankApplication.Domain;
+﻿using AutoMapper;
+using BankApplication.Domain;
 
 namespace BankApplication.Manager;
 
 public class UserUseCase : IUserUseCase
 {
     private readonly IUserRepository _repository;
+    private readonly IMapper _mapper;
 
-    public UserUseCase(IUserRepository repository)
+    public UserUseCase(IUserRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
-    public async Task<User> Create(User user)
+    public async Task<UserOutputModel> Create(UserInputModel user)
     {
-        return await _repository.Create(user);
+        var userModel = _mapper.Map<User>(user);
+        await _repository.Create(userModel);
+        return _mapper.Map<UserOutputModel>(userModel);
     }
 
-    public async Task<User> Delete(Guid Id)
+    public async Task<UserOutputModel> Delete(Guid Id)
     {
-        return await _repository.Delete(Id);
+        return _mapper.Map<UserOutputModel>(await _repository.Delete(Id));
     }
 
-    public async Task<IEnumerable<User>> GetAll()
+    public async Task<IEnumerable<UserOutputModel>> GetAll()
     {
-       return await _repository.GetAll();
+       return _mapper.Map<IEnumerable<User>, IEnumerable<UserOutputModel>>(await _repository.GetAll());
     }
 
-    public async Task<User> GetById(Guid Id)
+    public async Task<UserOutputModel> GetById(Guid Id)
     {
-        return await _repository.GetById(Id);
+        return _mapper.Map<UserOutputModel>(await _repository.GetById(Id));
     }
 
-    public async Task<User> Update(User user)
+    public async Task<UserOutputModel> Update(UserUpdateModel user)
     {
-        return await _repository.Update(user);
+        var userModel = _mapper.Map<User>(user);
+        return _mapper.Map<User, UserOutputModel>(await _repository.Update(userModel));
     }
 }

@@ -4,9 +4,9 @@ namespace BankApplication.Manager;
 
 public interface ITransactionUseCase
 {
-    Task<IEnumerable<Transaction>> GetAll();
-    Task<Transaction> GetById(Guid Id);
-    Task<Transaction> Create(Transaction transaction);
+    Task<IEnumerable<TransactionOutputModel>> GetAll();
+    Task<TransactionOutputModel> GetById(Guid Id);
+    Task<TransactionOutputModel> Create(TransactionInputModel transaction);
     Task Update(Transaction transaction);
     Task Delete(Guid Id);
 }

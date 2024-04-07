@@ -2,11 +2,13 @@ using BankApplication.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.UseControllerConfiguration();
 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.UseSwaggerConfiguration();
+
+builder.Services.UseAutoMapperConfiguration();
 
 builder.Services.UseDbContextConfiguration(builder);
 

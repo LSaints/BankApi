@@ -50,7 +50,7 @@ public class TransactionController : ControllerBase
     [SwaggerOperation(Summary = "Criar uma nova transação")]
     [SwaggerResponse(StatusCodes.Status201Created, "Transação criada com sucesso")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro no servidor")]
-    public async Task<ActionResult> Create([FromBody] Transaction transaction) 
+    public async Task<ActionResult> Create([FromBody] TransactionInputModel transaction) 
     {
         try 
         {

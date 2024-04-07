@@ -4,9 +4,9 @@ namespace BankApplication.Manager;
 
 public interface IUserUseCase
 {
-    Task<IEnumerable<User>> GetAll();
-    Task<User> GetById(Guid Id);
-    Task<User> Create(User user);
-    Task<User> Update(User user);
-    Task<User> Delete(Guid Id);
+    Task<IEnumerable<UserOutputModel>> GetAll();
+    Task<UserOutputModel> GetById(Guid Id);
+    Task<UserOutputModel> Create(UserInputModel user);
+    Task<UserOutputModel> Update(UserUpdateModel user);
+    Task<UserOutputModel> Delete(Guid Id);
 }

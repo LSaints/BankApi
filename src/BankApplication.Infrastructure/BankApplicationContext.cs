@@ -14,12 +14,7 @@ public class BankApplicationContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var basePath = ("/home/mateus/DEV/BankApplication/src/BankApplication.API");
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(basePath)
-            .AddJsonFile("appsettings.json")
-            .Build();
-        var connectionString = configuration.GetConnectionString("Database");
+        var connectionString = "Server=host.docker.internal;Database=DB_Bank;Uid=root;Pwd=senhaforteroot; ";
         if(!optionsBuilder.IsConfigured) 
         {
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));

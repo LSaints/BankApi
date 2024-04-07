@@ -31,12 +31,20 @@ public class TransactionRepository : ITransactionRepository
 
     public async Task<IEnumerable<Transaction>> GetAll()
     {
-        return await _context.transactions.AsNoTracking().ToListAsync();
+        return await _context.transactions
+        .Include(e => e.Sender)
+        .Include(e => e.Receiver)
+        .AsNoTracking()
+        .OrderByDescending(e => e.Date)
+        .ToListAsync();
     }
 
     public async Task<Transaction> GetById(Guid Id)
     {
-        return await _context.transactions.SingleAsync(e => e.Id == Id);
+        return await _context.transactions
+        .Include(e => e.Sender)
+        .Include(e => e.Receiver)
+        .SingleAsync(e => e.Id == Id);
     }
 
     public async Task Update(Transaction transaction)

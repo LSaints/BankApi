@@ -49,7 +49,7 @@ public class UserController : ControllerBase
     [SwaggerOperation(Summary = "Criar novo usuário")]
     [SwaggerResponse(StatusCodes.Status201Created, "Usuário criado com sucesso")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro no servidor")]
-    public async Task<ActionResult> Create([FromBody] User user) 
+    public async Task<ActionResult> Create([FromBody] UserInputModel user) 
     {
         try 
         {
@@ -65,7 +65,7 @@ public class UserController : ControllerBase
     [SwaggerOperation(Summary = "Alterar dados do usuario especificado")]
     [SwaggerResponse(StatusCodes.Status200OK, "Usuário alterado com sucesso")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro no servidor")]
-     public async Task<ActionResult> Update([FromBody] User user) 
+     public async Task<ActionResult> Update([FromBody] UserUpdateModel user) 
     {
         try 
         {

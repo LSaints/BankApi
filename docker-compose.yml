@@ -8,12 +8,14 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Docker  # Define o ambiente de execução da API
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ConnectionStrings__MysqlConnection=Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforte1;
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - bank-network
+    command: ["./entrypoint.sh"]
 
   db:
     image: mysql:latest
@@ -26,6 +28,10 @@ services:
       MYSQL_PASSWORD: "senhaforte1"
     networks:
       - bank-network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u dev -psenhaforte1"]
+      interval: 5s
+      retries: 10
 
 networks:
   bank-network:

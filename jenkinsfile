@@ -1,16 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_SOCKET = '/var/run/docker.sock'
-    }
-
     stages {
         stage('Deploy') {
             steps {
                 script {
-                    // Executar Docker Compose dentro do contêiner do Jenkins
-                    sh 'docker run --rm -v $DOCKER_SOCKET:$DOCKER_SOCKET -v $PWD:$PWD -w $PWD docker/compose:latest up -d'
+                    // Executar Docker Compose no host da máquina
+                    sh 'docker-compose -f /var/jenkins_home/workspace/BankApplicationApi/docker-compose.yml up -d'
                 }
             }
         }

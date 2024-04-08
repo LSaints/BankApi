@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   api:
     build: 
@@ -6,11 +8,10 @@ services:
     ports:
       - "8080:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
-      - ConnectionStrings__MysqlConnection=Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforte1;
+      ASPNETCORE_ENVIRONMENT: Docker
+      ConnectionStrings__MysqlConnection: "Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforte1;"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     networks:
       - bank-network
     command: ["./entrypoint.sh"]

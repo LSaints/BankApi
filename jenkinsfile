@@ -2,15 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Copy Files') {
-            steps {
-                script {
-                    // Copiar os arquivos da aplicação do contêiner para o host
-                    sh 'docker cp jenkins-master:/var/jenkins_home/workspace/BankApplicationApi /home/vagrant/'
-                }
-            }
-        }
-        
         stage('Deploy') {
             steps {
                 script {

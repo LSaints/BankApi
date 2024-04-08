@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Executar Docker Compose
-                    sh 'docker-compose up -d'
+                    sh 'docker compose up -d'
                 }
             }
         }

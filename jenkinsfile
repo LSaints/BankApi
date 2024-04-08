@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Copiar os arquivos da aplicação do contêiner para o host
-                    sh 'jenkins-master:/var/jenkins_home/workspace/BankApplicationApi@temp /home/vagrant/'
+                    sh 'docker cp jenkins-master:/var/jenkins_home/workspace/BankApplicationApi /home/vagrant/'
                 }
             }
         }

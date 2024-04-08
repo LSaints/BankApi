@@ -2,11 +2,20 @@ pipeline {
     agent any
 
     stages {
+        stage('Copy Files') {
+            steps {
+                script {
+                    // Copiar os arquivos da aplicação do contêiner para o host
+                    sh 'jenkins-master:/var/jenkins_home/BankApplicationApi /home/vagrant/'
+                }
+            }
+        }
+        
         stage('Deploy') {
             steps {
                 script {
                     // Executar Docker Compose no host da máquina
-                    sh '/usr/local/bin/docker-compose -f /var/jenkins_home/workspace/BankApplicationApi/docker-compose.yml up -d'
+                    sh '/usr/local/bin/docker-compose -f  /home/vagrant/BankApplicationApi/docker-compose.yml up -d'
                 }
             }
         }

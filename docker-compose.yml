@@ -24,6 +24,5 @@ services:
     networks:
       - bank-network
 
-
 networks:
   bank-network:

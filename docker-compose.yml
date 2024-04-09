@@ -14,7 +14,6 @@ services:
       - db
     networks:
       - bank-network
-    command: ["./entrypoint.sh"]
 
   db:
     image: mysql:latest
@@ -27,10 +26,6 @@ services:
       MYSQL_PASSWORD: "senhaforte1"
     networks:
       - bank-network
-    healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u dev -psenhaforte1"]
-      interval: 5s
-      retries: 10
 
 networks:
   bank-network:

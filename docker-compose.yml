@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: src/Dockerfile
     ports:
-      - "8080:80"
+      - "9090:80"
     environment:
       ASPNETCORE_ENVIRONMENT: Docker
       ConnectionStrings__MysqlConnection: "Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforte1;"

@@ -4,12 +4,19 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Initial setup') {
+            steps {
+                script {
+                    sh 'sudo chmod +x entrypoint.sh'
+                    sh 'sudo sudo ufw allow 44392'
+                }
+            }
+        }
         stage('Deploy') {
             steps {
                 script {
                     // Executar Docker Compose no host da máquina
-                    sh 'sudo chmod +x entrypoint.sh'
-                    sh 'sudo sudo ufw allow 44392'
                     sh 'docker compose up'
                 }
             }

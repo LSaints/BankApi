@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  db:
+    build:
+      context: .
+      dockerfile: database/Dockerfile
+    ports:
+      - "3306:3306"
+    networks:
+      - bank-network
+
   api:
     build: 
       context: .
@@ -12,18 +21,6 @@ services:
       ConnectionStrings__MysqlConnection: "Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforte1;"
     depends_on:
       - db
-    networks:
-      - bank-network
-
-  db:
-    image: mysql:latest
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: "senhaforteroot"
-      MYSQL_DATABASE: "DB_Bank"
-      MYSQL_USER: "dev"
-      MYSQL_PASSWORD: "senhaforte1"
     networks:
       - bank-network
 

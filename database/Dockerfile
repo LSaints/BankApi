@@ -1,0 +1,6 @@
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=senhaforteroot
+ENV MYSQL_DATABASE=DB_Bank
+ENV MYSQL_USER=dev
+ENV MYSQL_PASSWORD=senhaforte1

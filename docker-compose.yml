@@ -18,7 +18,6 @@ services:
       - "44392:80"
     environment:
       ASPNETCORE_ENVIRONMENT: Docker
-      ConnectionStrings__MysqlConnection: "Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforte1;"
     depends_on:
       - db
     networks:

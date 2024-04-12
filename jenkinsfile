@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     // Executar Docker Compose no host da máquina
-                    sh 'docker compose up'
+                    sh 'sudo docker compose up'
                 }
             }
         }

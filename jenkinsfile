@@ -9,7 +9,6 @@ pipeline {
             steps {
                 script {
                     sh 'sudo chmod +x entrypoint.sh'
-                    sh 'sudo sudo ufw allow 44392'
                 }
             }
         }

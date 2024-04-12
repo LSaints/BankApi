@@ -1,6 +1,5 @@
 ﻿using BankApplication.Domain;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace BankApplication.Infrastructure;
 

@@ -1,4 +1,7 @@
-version: '3.8'
+networks:
+  bank-network:
+    driver: bridge
+
 
 services:
   db:
@@ -22,7 +25,3 @@ services:
       - db
     networks:
       - bank-network
-
-networks:
-  bank-network:
-    driver: bridge

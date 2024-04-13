@@ -13,7 +13,7 @@ public class BankApplicationContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connectionString = "Server=host.docker.internal;Database=DB_Bank;Uid=root;Pwd=senhaforteroot;";
+        var connectionString = "Server=localhost;Database=DB_Bank;Uid=root;Pwd=senhaforteroot;";
         if(!optionsBuilder.IsConfigured) 
         {
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));

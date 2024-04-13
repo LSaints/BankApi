@@ -25,6 +25,7 @@ pipeline {
     post {
         always {
             // Limpar recursos
+            sh 'sudo rm -r  -f /var/lib/jenkins/workspace/BankApplicationApi*'
             cleanWs()
         }
 

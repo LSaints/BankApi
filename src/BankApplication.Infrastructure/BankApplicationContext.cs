@@ -13,7 +13,7 @@ public class BankApplicationContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connectionString = "Server=db;Database=DB_Bank;Uid=root;Pwd=senhaforteroot;";
+        var connectionString = "Server=db;Database=DB_Bank;Uid=dev;Pwd=senhaforteuser;";
         if(!optionsBuilder.IsConfigured) 
         {
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));

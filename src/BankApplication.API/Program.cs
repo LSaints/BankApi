@@ -28,7 +28,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UsePrometheusConfiguration();
 }
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.UseAppCorsConfiguration();
 
@@ -37,5 +42,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UsePrometheusConfiguration();
 
 app.Run();

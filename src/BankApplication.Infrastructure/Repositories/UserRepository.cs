@@ -31,6 +31,16 @@ public class UserRepository : IUserRepository
         return userToRemove.Entity;
     }
 
+    public async Task<User> Deposit(Guid Id, double Amount)
+    {
+        var user = await _context.users.SingleAsync(e => e.Id == Id);
+        if (user == null)
+            throw new Exception("Usuario não encontrado");
+        user.Amount = user.Amount + Amount;
+        await _context.SaveChangesAsync();
+        return user;
+    }
+
     public async Task<IEnumerable<User>> GetAll()
     {
         return await _context.users.AsNoTracking().ToListAsync();

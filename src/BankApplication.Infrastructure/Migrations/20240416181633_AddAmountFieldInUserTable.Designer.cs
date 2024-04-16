@@ -3,6 +3,7 @@ using System;
 using BankApplication.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankApplication.Infrastructure.Migrations
 {
     [DbContext(typeof(BankApplicationContext))]
-    partial class BankApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240416181633_AddAmountFieldInUserTable")]
+    partial class AddAmountFieldInUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

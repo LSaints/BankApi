@@ -6,15 +6,21 @@ namespace BankApplication.Manager;
 public class TransactionUseCase : ITransactionUseCase
 {
     private readonly ITransactionRepository _repository;
+    private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public TransactionUseCase(ITransactionRepository repository, IMapper mapper)
+    public TransactionUseCase(ITransactionRepository repository, IUserRepository userRepository, IMapper mapper)
     {
         _repository = repository;
+        _userRepository = userRepository;
         _mapper = mapper;
     }
     public async Task<TransactionOutputModel> Create(TransactionInputModel transaction)
     {
+        var user = await _userRepository.GetById(transaction.SenderId);
+        if (user.Amount < transaction.Amount)
+            throw new Exception("Usuario não tem saldo suficiente");
+
         var transactionModel = _mapper.Map<Transaction>(transaction);
         transactionModel.Date = DateTime.Now;
         await _repository.Create(transactionModel);

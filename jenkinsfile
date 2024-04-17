@@ -1,15 +1,15 @@
-version: '3.8'
-
 pipeline {
     agent any
 
     stages {
-
         stage('Deploy') {
             steps {
                 script {
                     sh 'echo :: Realizando build com docker compose ::'
-                    sh 'sudo docker compose up --build'
+                    sh 'sudo docker-compose up --build --no-start' // Não iniciar os contêineres imediatamente
+                    sh 'sudo docker-compose up -d db' // Iniciar apenas o banco de dados
+                    waitForDB() // Esperar até que o banco de dados esteja pronto
+                    sh 'sudo docker-compose up -d' // Iniciar todos os serviços após o banco de dados estar pronto
                 }
             }
         }
@@ -21,3 +21,22 @@ pipeline {
         }
     }
 }
+
+def waitForDB() {
+    def timeout = 300 // Tempo limite em segundos
+    def startTime = System.currentTimeMillis()
+
+    while (true) {
+        def exitCode = sh(script: 'sudo docker-compose exec db mysqladmin ping -h db -u dev --password=senhaforte1', returnStatus: true)
+        if (exitCode == 0) {
+            echo 'Banco de dados pronto!'
+            return
+        }
+
+        def currentTime = System.currentTimeMillis()
+        if ((currentTime - startTime) > (timeout * 1000)) {
+            error 'Timeout ao aguardar o banco de dados ficar pronto'
+        }
+    }
+}
+

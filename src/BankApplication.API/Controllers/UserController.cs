@@ -61,6 +61,22 @@ public class UserController : ControllerBase
         }
     }
 
+    [HttpPost("deposit/{Id}")]
+    [SwaggerOperation(Summary = "Depositar valor")]
+    [SwaggerResponse(StatusCodes.Status201Created, "Valor depositado com sucesso")]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, "Erro no servidor")]
+    public async Task<ActionResult> Deposit(Guid Id, double Amount) 
+    {
+        try 
+        {
+            var entity = await _useCase.Deposit(Id, Amount);
+            return CreatedAtAction(nameof(GetAll),  entity);
+        } catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     [HttpPut]
     [SwaggerOperation(Summary = "Alterar dados do usuario especificado")]
     [SwaggerResponse(StatusCodes.Status200OK, "Usuário alterado com sucesso")]

@@ -26,6 +26,14 @@ public class UserUseCase : IUserUseCase
         return _mapper.Map<UserOutputModel>(await _repository.Delete(Id));
     }
 
+    public async Task<UserOutputModel> Deposit(Guid Id, double Amount)
+    {
+        var user = await _repository.GetById(Id);
+        if (Amount <= 0)
+            throw new Exception("Deposito invalido");
+        return _mapper.Map<UserOutputModel>(await _repository.Deposit(Id, Amount));
+    }
+
     public async Task<IEnumerable<UserOutputModel>> GetAll()
     {
        return _mapper.Map<IEnumerable<User>, IEnumerable<UserOutputModel>>(await _repository.GetAll());
